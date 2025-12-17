@@ -6,7 +6,7 @@ const getSuggestions = async (weatherData, userPreferences = {}) => {
   // 1. Basic Query: Match temperature and weather condition
   // We look for outfits where the current temp is between the min and max
   const query = {
-    tempMin: { $lte: temp }, 
+    tempMin: { $lte: temp },
     tempMax: { $gte: temp },
     // Optional: You can uncomment this line if you want strict matching for condition (e.g., 'Rain')
     // weatherCondition: condition 
@@ -22,4 +22,7 @@ const getSuggestions = async (weatherData, userPreferences = {}) => {
   return outfits;
 };
 
-module.exports = { getSuggestions };
+module.exports = {
+  getSuggestions,
+  getOutfitSuggestions: getSuggestions // Alias for controller
+};

@@ -1,20 +1,33 @@
-const { getCurrentWeather } = require('../services/weatherService');
+const { getWeatherData } = require('../services/weatherService');
+const { getOutfitSuggestions } = require('../services/outfitService');
 
 const getWeather = async (req, res) => {
-  const { lat, lon } = req.query; // Get lat and lon from the URL query string
+  const { lat, lon, city } = req.query;
 
   // Basic validation
-  if (!lat || !lon) {
-    return res.status(400).json({ 
-      message: 'Latitude (lat) and Longitude (lon) query parameters are required.' 
+  if (!city && (!lat || !lon)) {
+    return res.status(400).json({
+      message: 'Please provide a city name OR latitude/longitude.'
     });
   }
 
   try {
-    const weatherData = await getCurrentWeather(lat, lon);
-    res.json(weatherData);
+    // 1. Get Weather + Forecast
+    const weatherData = await getWeatherData({ lat, lon, city });
+
+    // 2. Get Outfit Suggestions based on CURRENT weather
+    // (Future improvement: Suggest based on forecast too)
+    const suggestions = await getOutfitSuggestions(weatherData.current);
+
+    res.json({
+      location: weatherData.location,
+      weather: weatherData.current, // Keeping 'weather' key for backward compat with frontend
+      forecast: weatherData.forecast,
+      suggestions
+    });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    const status = error.message === 'City not found' ? 404 : 500;
+    res.status(status).json({ message: error.message });
   }
 };
 

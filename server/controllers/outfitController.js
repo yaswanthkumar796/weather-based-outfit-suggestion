@@ -1,10 +1,11 @@
 const Outfit = require('../models/Outfit');
+const Request = require('../models/Request');
 const { getCurrentWeather } = require('../services/weatherService');
 const { getSuggestions } = require('../services/outfitService');
 
 // 1. Suggest Outfit Logic
 const suggestOutfit = async (req, res) => {
-  const { lat, lon } = req.query; 
+  const { lat, lon } = req.query;
 
   if (!lat || !lon) {
     return res.status(400).json({ message: 'Latitude and Longitude are required.' });
@@ -13,7 +14,7 @@ const suggestOutfit = async (req, res) => {
   try {
     // Get Real Weather
     const weatherData = await getCurrentWeather(lat, lon);
-    
+
     // Get Suggestions based on that weather
     const suggestions = await getSuggestions(weatherData);
 
@@ -27,13 +28,18 @@ const suggestOutfit = async (req, res) => {
 };
 
 // 2. Create Outfit Logic (NEW)
+// 2. Submit Outfit Request (Modified for Approval Flow)
 const createOutfit = async (req, res) => {
   try {
-    const newOutfit = new Outfit(req.body);
-    const savedOutfit = await newOutfit.save();
-    res.status(201).json(savedOutfit);
+    // Instead of creating an Outfit directly, we create a Request for approval
+    const newRequest = new Request({
+      ...req.body,
+      status: 'Pending' // Ensure it starts as pending
+    });
+    const savedRequest = await newRequest.save();
+    res.status(201).json(savedRequest);
   } catch (error) {
-    res.status(400).json({ message: 'Error creating outfit', error: error.message });
+    res.status(400).json({ message: 'Error submitting outfit request', error: error.message });
   }
 };
 

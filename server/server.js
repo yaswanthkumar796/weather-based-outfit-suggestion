@@ -2,12 +2,14 @@ const express = require('express');
 const dotenv = require('dotenv');
 
 // 1. CONFIGURE DOTENV FIRST (Before importing routes)
-dotenv.config(); 
+dotenv.config();
 
 const cors = require('cors');
 const connectDB = require('./config/db');
 const outfitRoutes = require('./routes/outfitRoutes');
+
 const weatherRoutes = require('./routes/weatherRoutes');
+const adminRoutes = require('./routes/adminRoutes'); // Import Admin Routes
 
 // Connect to Database
 connectDB();
@@ -21,6 +23,7 @@ app.use(cors());
 // Route Mounts
 app.use('/api/weather', weatherRoutes);
 app.use('/api/outfits', outfitRoutes);
+app.use('/api/admin', adminRoutes); // Mount Admin Routes
 
 // Basic Route
 app.get('/', (req, res) => {

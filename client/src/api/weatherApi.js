@@ -1,16 +1,27 @@
 import axios from 'axios';
 
-// Ensure this matches your backend port
-const API_BASE_URL = 'http://localhost:5000/api'; 
+// Get backend URL from env or default to localhost
+const API_URL = 'http://localhost:5000/api/weather';
 
-export const fetchSuggestions = async (lat, lon) => {
+export const fetchWeather = async (lat, lon, city) => {
   try {
-    const response = await axios.get(`${API_BASE_URL}/outfits/suggest`, {
-      params: { lat, lon }
-    });
-    return response.data;
+    let url = `${API_URL}/current?`;
+
+    if (city) {
+      url += `city=${encodeURIComponent(city)}`;
+    } else if (lat && lon) {
+      url += `lat=${lat}&lon=${lon}`;
+    } else {
+      throw new Error("Location data missing");
+    }
+
+    const response = await axios.get(url);
+    return response.data; // { location, weather, forecast, suggestions }
   } catch (error) {
-    console.error("Error fetching suggestions:", error);
-    throw error;
+    console.error("Error fetching weather:", error);
+    throw error.response?.data?.message || "Failed to fetch weather data";
   }
 };
+
+// Legacy support override (if used elsewhere, redirect to new function)
+export const fetchSuggestions = (lat, lon) => fetchWeather(lat, lon);
