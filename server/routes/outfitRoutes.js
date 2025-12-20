@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { suggestOutfit, createOutfit } = require('../controllers/outfitController');
+const { suggestOutfit, createOutfit, getAllOutfits } = require('../controllers/outfitController');
+
+// GET /api/outfits - Get all outfits
+router.get('/', getAllOutfits);
 
 // GET /api/outfits/suggest
 router.get('/suggest', suggestOutfit);

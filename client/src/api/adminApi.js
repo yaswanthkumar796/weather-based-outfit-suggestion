@@ -46,3 +46,10 @@ export const rejectRequest = async (id) => {
      });
      return response.json();
 };
+
+export const getFeedback = async () => {
+     const response = await fetch(`http://localhost:5000/api/feedback`, {
+          headers: getAuthHeader(),
+     });
+     return response.json();
+};

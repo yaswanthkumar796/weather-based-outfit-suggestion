@@ -30,6 +30,14 @@ const OutfitSchema = new mongoose.Schema({
     enum: ['Male', 'Female', 'Unisex'],
     default: 'Unisex',
     required: true
+  },
+  // COLOR PSYCHOLOGY FEATURE
+  colors: {
+    type: [String],
+    enum: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple',
+      'Pink', 'Brown', 'Black', 'White', 'Gray', 'Beige',
+      'Navy', 'Burgundy', 'Olive', 'Tan', 'Cream', 'Mint'],
+    default: []
   }
 }, {
   timestamps: true

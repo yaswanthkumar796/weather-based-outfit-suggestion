@@ -10,6 +10,7 @@ const outfitRoutes = require('./routes/outfitRoutes');
 
 const weatherRoutes = require('./routes/weatherRoutes');
 const adminRoutes = require('./routes/adminRoutes'); // Import Admin Routes
+const feedbackRoutes = require('./routes/feedbackRoutes');
 
 // Connect to Database
 connectDB();
@@ -24,6 +25,7 @@ app.use(cors());
 app.use('/api/weather', weatherRoutes);
 app.use('/api/outfits', outfitRoutes);
 app.use('/api/admin', adminRoutes); // Mount Admin Routes
+app.use('/api/feedback', feedbackRoutes);
 
 // Basic Route
 app.get('/', (req, res) => {

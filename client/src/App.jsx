@@ -12,7 +12,12 @@ import AdminDashboard from './pages/AdminDashboard';
 import FAQ from './pages/FAQ';
 import About from './pages/About';
 import Blog from './pages/Blog';
+import Feedback from './pages/Feedback';
 import SettingsModal from './components/SettingsModal';
+import DarkModeToggle from './components/DarkModeToggle';
+import OutfitGallery from './pages/OutfitGallery';
+import VirtualWardrobe from './pages/VirtualWardrobe';
+import ColorMoodBanner from './components/ColorMoodBanner';
 // No App.css import needed, using Tailwind
 
 function App() {
@@ -33,6 +38,7 @@ function App() {
 
   const [showSettings, setShowSettings] = useState(false);
   const [selectedReportDay, setSelectedReportDay] = useState(null); // Detailed report modal state
+  const [colorRecommendations, setColorRecommendations] = useState(null); // Color psychology feature
 
   const openSettings = () => {
     setPendingUnit(unit);
@@ -283,8 +289,11 @@ function App() {
 
   const navItems = [
     { id: 'home', label: 'Home' },
+    { id: 'gallery', label: 'Gallery' },
+    { id: 'wardrobe', label: 'My Wardrobe' },
     { id: 'blog', label: 'Blog' },
     { id: 'faq', label: 'FAQ' },
+    { id: 'feedback', label: 'Feedback' },
     { id: 'about', label: 'About' },
     { id: 'admin', label: 'Admin Portal' },
   ];
@@ -338,7 +347,7 @@ function App() {
   }, [data, selectedReportDay]);
 
   return (
-    <div className={`min-h-screen transition-all duration-1000 ${bgClass.includes('text-slate-800') ? 'text-slate-800' : 'text-white'} ${bgClass}`}>
+    <div className="min-h-screen transition-all duration-500" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
 
       {/* Dynamic Pop-up Alert */}
       {weatherAlert && (
@@ -354,58 +363,140 @@ function App() {
       )}
 
       {/* Premium Glassmorphism Header */}
-      <header className="fixed top-0 w-full z-50 bg-black/10 backdrop-blur-xl border-b border-white/10 transition-all duration-500">
-        <div className="container mx-auto max-w-7xl flex items-center justify-between px-6 py-4">
+      <header className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-2xl border-b border-white/10 transition-all duration-500">
+        <div className="container mx-auto max-w-7xl flex items-center justify-between px-6 lg:px-8 py-5">
 
           {/* Logo */}
           <div
-            className="text-2xl font-black tracking-[0.2em] uppercase cursor-pointer text-white drop-shadow-md hover:scale-105 transition-transform"
+            className="text-xl lg:text-2xl font-black tracking-[0.15em] uppercase cursor-pointer text-white drop-shadow-lg hover:scale-105 transition-transform flex items-center gap-3"
             onClick={() => handleNavClick('home')}
           >
-            WearToWeather
+            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <span className="text-sm">☀️</span>
+            </div>
+            <span className="hidden sm:inline">WearToWeather</span>
+            <span className="sm:hidden">W2W</span>
           </div>
 
-          {/* Centered Desktop Nav */}
-          <nav className="hidden lg:flex items-center gap-8 absolute left-1/2 transform -translate-x-1/2">
-            {navItems.filter(item => item.id !== 'admin').map((item) => (
+          {/* Desktop Navigation - Primary Items Only */}
+          <nav className="hidden lg:flex items-center gap-2">
+            {/* Primary Nav Items */}
+            {[
+              { id: 'home', label: 'Home', icon: '🏠' },
+              { id: 'gallery', label: 'Gallery', icon: '🖼️' },
+              { id: 'wardrobe', label: 'Wardrobe', icon: '💼' },
+            ].map((item) => (
               <button
                 key={item.id}
                 onClick={() => handleNavClick(item.id)}
                 className={`
-                  relative text-sm font-bold tracking-widest uppercase transition-all duration-300
+                  relative px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300
                   ${view === item.id
-                    ? 'text-white scale-110 drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]'
-                    : 'text-white/60 hover:text-white hover:drop-shadow-[0_0_5px_rgba(255,255,255,0.4)]'}
+                    ? 'bg-white/15 text-white shadow-lg shadow-white/10'
+                    : 'text-white/70 hover:text-white hover:bg-white/5'
+                  }
                 `}
               >
+                <span className="mr-2">{item.icon}</span>
                 {item.label}
-                {/* Glowing Active Dot */}
-                {view === item.id && (
-                  <span className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_10px_rgba(255,255,255,0.8)]"></span>
-                )}
               </button>
             ))}
+
+            {/* More Dropdown */}
+            <div className="relative group">
+              <button className="px-5 py-2.5 rounded-xl font-bold text-sm text-white/70 hover:text-white hover:bg-white/5 transition-all duration-300 flex items-center gap-2">
+                <span>More</span>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden">
+                {[
+                  { id: 'blog', label: 'Blog', icon: '📝' },
+                  { id: 'faq', label: 'FAQ', icon: '❓' },
+                  { id: 'feedback', label: 'Feedback', icon: '💬' },
+                  { id: 'about', label: 'About', icon: 'ℹ️' },
+                ].map((item, index) => (
+                  <button
+                    key={item.id}
+                    onClick={() => handleNavClick(item.id)}
+                    className={`
+                      w-full text-left px-4 py-3 text-sm font-semibold transition-all duration-200
+                      ${view === item.id ? 'bg-white/10 text-white' : 'text-white/70 hover:bg-white/5 hover:text-white'}
+                      ${index !== 0 ? 'border-t border-white/5' : ''}
+                    `}
+                  >
+                    <span className="mr-3">{item.icon}</span>
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </nav>
 
-          {/* Right Actions: Admin + Mobile Menu */}
-          <div className="flex items-center gap-6">
-            {/* Minimal Admin Link */}
+          {/* Right Actions */}
+          <div className="flex items-center gap-3 lg:gap-4">
+            {/* Dark Mode Toggle */}
+            <DarkModeToggle />
+
+            {/* Admin Link - Desktop Only */}
             <button
               onClick={() => handleNavClick('admin')}
-              className={`hidden lg:block text-xs font-semibold tracking-wider transition-colors ${view === 'admin' ? 'text-white' : 'text-white/40 hover:text-white'}`}
+              className={`
+                hidden lg:flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold uppercase tracking-wider transition-all
+                ${view === 'admin'
+                  ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30'
+                  : 'text-white/40 hover:text-white hover:bg-white/5'
+                }
+              `}
             >
-              ADMIN
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9.594 3.94c.09-.542.56-.94 1.11-.94h2.593c.55 0 1.02.398 1.11.94l.213 1.281c.063.374.313.686.645.87.074.04.147.083.22.127.324.196.72.257 1.075.124l1.217-.456a1.125 1.125 0 011.37.49l1.296 2.247a1.125 1.125 0 01-.26 1.431l-1.003.827c-.293.24-.438.613-.431.992a6.759 6.759 0 010 .255c-.007.378.138.75.43.99l1.005.828c.424.35.534.954.26 1.43l-1.298 2.247a1.125 1.125 0 01-1.369.491l-1.217-.456c-.355-.133-.75-.072-1.076.124a6.57 6.57 0 01-.22.128c-.331.183-.581.495-.644.869l-.213 1.28c-.09.543-.56.941-1.11.941h-2.594c-.55 0-1.02-.398-1.11-.94l-.213-1.281c-.062-.374-.312-.686-.644-.87a6.52 6.52 0 01-.22-.127c-.325-.196-.72-.257-1.076-.124l-1.217.456a1.125 1.125 0 01-1.369-.49l-1.297-2.247a1.125 1.125 0 01.26-1.431l1.004-.827c.292-.24.437-.613.43-.992a6.932 6.932 0 010-.255c.007-.378-.138-.75-.43-.99l-1.004-.828a1.125 1.125 0 01-.26-1.43l1.297-2.247a1.125 1.125 0 011.37-.491l1.216.456c.356.133.751.072 1.076-.124.072-.044.146-.087.22-.128.332-.183.582-.495.644-.869l.214-1.281z" />
+                <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              Admin
             </button>
 
-            {/* Mobile Menu Icon */}
-            <div className="lg:hidden text-white cursor-pointer hover:bg-white/10 p-2 rounded-full transition">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setShowSettings(!showSettings)}
+              className="lg:hidden text-white p-2 hover:bg-white/10 rounded-xl transition-all"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
-            </div>
+            </button>
           </div>
 
         </div>
+
+        {/* Mobile Menu Dropdown */}
+        {showSettings && (
+          <div className="lg:hidden bg-slate-900/98 backdrop-blur-xl border-t border-white/10 animate-fade-in-up">
+            <div className="container mx-auto px-6 py-4 space-y-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => {
+                    handleNavClick(item.id);
+                    setShowSettings(false);
+                  }}
+                  className={`
+                    w-full text-left px-4 py-3 rounded-xl font-bold text-sm transition-all
+                    ${view === item.id
+                      ? 'bg-white/15 text-white'
+                      : 'text-white/70 hover:bg-white/5 hover:text-white'
+                    }
+                  `}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
       </header>
 
       {/* Spacer for fixed header (Only show if NOT in prompt/hero mode to avoid double spacing or gap) */}
@@ -414,6 +505,10 @@ function App() {
       <main className="fade-in-up">
         {(() => {
           // Render logic using immediate invocation to handle new views cleanly
+
+          // New Pages
+          if (view === 'gallery') return <OutfitGallery />;
+          if (view === 'wardrobe') return <VirtualWardrobe />;
 
           // Placeholders for new pages
           if (view === 'blog') return (
@@ -432,6 +527,12 @@ function App() {
             <div className="container mx-auto px-4 py-8">
               <button onClick={() => setView('home')} className="mb-6 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition">← Back</button>
               <FAQ />
+            </div>
+          );
+          if (view === 'feedback') return (
+            <div className="container mx-auto px-4 py-8">
+              <button onClick={() => setView('home')} className="mb-6 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition">← Back</button>
+              <Feedback />
             </div>
           );
 
