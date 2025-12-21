@@ -13,22 +13,24 @@ const generateToken = (id) => {
 // @desc    Auth admin & get token
 // @route   POST /api/admin/login
 // @access  Public
+// @desc    Auth admin & get token
+// @route   POST /api/admin/login
+// @access  Public
 const authAdmin = async (req, res) => {
      const { username, password } = req.body;
-     console.log('Login attempt:', { username, password });
+     console.log('Login attempt:', { username });
 
      const admin = await Admin.findOne({ username });
-     console.log('Admin found in DB:', admin);
 
      if (admin && (await admin.matchPassword(password))) {
-          console.log('Password matched');
+          console.log('Login successful');
           res.json({
                _id: admin._id,
                username: admin.username,
                token: generateToken(admin._id),
           });
      } else {
-          console.log('Password mismatch or admin not found');
+          console.log('Invalid credentials');
           res.status(401).json({ message: 'Invalid username or password' });
      }
 };
@@ -110,8 +112,16 @@ const seedAdmin = async (req, res) => {
           const adminExists = await Admin.findOne({ username });
           if (adminExists) return res.status(400).json({ message: 'Admin already exists' });
 
-          const admin = await Admin.create({ username, password });
-          res.status(201).json(admin);
+          const bcrypt = require('bcryptjs');
+          const salt = await bcrypt.genSalt(10);
+          const password_hash = await bcrypt.hash(password, salt);
+
+          const admin = await Admin.create({ username, password_hash });
+          res.status(201).json({
+               _id: admin._id,
+               username: admin.username,
+               createdAt: admin.createdAt
+          });
      } catch (error) {
           res.status(500).json({ message: error.message });
      }
