@@ -42,7 +42,7 @@ const Feedback = () => {
     return (
         <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 text-white pt-24 pb-12 px-4">
             <div className="max-w-2xl mx-auto">
-                {/* Header */}
+                {}
                 <div className="text-center mb-12">
                     <h1 className="text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
                         Share Your Feedback
@@ -52,7 +52,7 @@ const Feedback = () => {
                     </p>
                 </div>
 
-                {/* Feedback Form */}
+                {}
                 <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/10 shadow-2xl">
                     {status.success ? (
                         <div className="text-center py-12">
@@ -71,7 +71,7 @@ const Feedback = () => {
                     ) : (
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                {/* Name */}
+                                {}
                                 <div>
                                     <label className="block text-sm font-medium text-blue-200 mb-2 pl-1">Name</label>
                                     <input
@@ -84,7 +84,7 @@ const Feedback = () => {
                                         className="w-full bg-white/5 border border-white/10 rounded-2xl px-5 py-3 focus:outline-none focus:ring-2 focus:ring-blue-500/50 transition-all text-white placeholder:text-white/20"
                                     />
                                 </div>
-                                {/* Email */}
+                                {}
                                 <div>
                                     <label className="block text-sm font-medium text-blue-200 mb-2 pl-1">Email</label>
                                     <input
@@ -99,7 +99,7 @@ const Feedback = () => {
                                 </div>
                             </div>
 
-                            {/* Rating */}
+                            {}
                             <div>
                                 <label className="block text-sm font-medium text-blue-200 mb-2 pl-1">Rating</label>
                                 <div className="flex items-center gap-4">
@@ -120,7 +120,7 @@ const Feedback = () => {
                                 </div>
                             </div>
 
-                            {/* Message */}
+                            {}
                             <div>
                                 <label className="block text-sm font-medium text-blue-200 mb-2 pl-1">Message</label>
                                 <textarea
@@ -134,14 +134,14 @@ const Feedback = () => {
                                 ></textarea>
                             </div>
 
-                            {/* Error Message */}
+                            {}
                             {status.error && (
                                 <div className="bg-red-500/10 border border-red-500/20 text-red-400 px-4 py-3 rounded-xl text-sm">
                                     {status.error}
                                 </div>
                             )}
 
-                            {/* Submit Button */}
+                            {}
                             <button
                                 type="submit"
                                 disabled={status.submitting}
@@ -156,7 +156,7 @@ const Feedback = () => {
                     )}
                 </div>
 
-                {/* Footer Note */}
+                {}
                 <p className="text-center mt-8 text-blue-200/40 text-sm">
                     Your feedback is important to us. We regularly review all submissions.
                 </p>

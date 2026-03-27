@@ -3,19 +3,13 @@ const Request = require('../models/Request');
 const Outfit = require('../models/Outfit');
 const jwt = require('jsonwebtoken');
 
-// Generate JWT
+
 const generateToken = (id) => {
      return jwt.sign({ id }, process.env.JWT_SECRET, {
           expiresIn: '30d',
      });
 };
 
-// @desc    Auth admin & get token
-// @route   POST /api/admin/login
-// @access  Public
-// @desc    Auth admin & get token
-// @route   POST /api/admin/login
-// @access  Public
 const authAdmin = async (req, res) => {
      const { username, password } = req.body;
      console.log('Login attempt:', { username });
@@ -35,9 +29,7 @@ const authAdmin = async (req, res) => {
      }
 };
 
-// @desc    Get all outfit requests
-// @route   GET /api/admin/requests
-// @access  Private/Admin
+
 const getRequests = async (req, res) => {
      try {
           const requests = await Request.find({ status: 'Pending' }).sort({ createdAt: -1 });
@@ -47,9 +39,7 @@ const getRequests = async (req, res) => {
      }
 };
 
-// @desc    Approve a request
-// @route   POST /api/admin/requests/:id/approve
-// @access  Private/Admin
+
 const approveRequest = async (req, res) => {
      try {
           const request = await Request.findById(req.params.id);
@@ -58,7 +48,7 @@ const approveRequest = async (req, res) => {
                return res.status(404).json({ message: 'Request not found' });
           }
 
-          // Create new Outfit from Request
+        
           const outfit = new Outfit({
                name: request.name,
                description: request.description,
@@ -73,7 +63,7 @@ const approveRequest = async (req, res) => {
 
           await outfit.save();
 
-          // Update Request status
+       
           request.status = 'Approved';
           await request.save();
 
@@ -83,9 +73,7 @@ const approveRequest = async (req, res) => {
      }
 };
 
-// @desc    Reject a request
-// @route   POST /api/admin/requests/:id/reject
-// @access  Private/Admin
+
 const rejectRequest = async (req, res) => {
      try {
           const request = await Request.findById(req.params.id);
@@ -103,9 +91,6 @@ const rejectRequest = async (req, res) => {
      }
 };
 
-// @desc    Create an initial admin (Utility route, remove in production or secure it)
-// @route   POST /api/admin/seed
-// @access  Public
 const seedAdmin = async (req, res) => {
      const { username, password } = req.body;
      try {

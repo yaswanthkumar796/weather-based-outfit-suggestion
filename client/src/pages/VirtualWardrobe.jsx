@@ -3,18 +3,18 @@ import OutfitCard from '../components/OutfitCard';
 
 const VirtualWardrobe = ({ onNavigate }) => {
     const [favorites, setFavorites] = useState([]);
-    const [groupBy, setGroupBy] = useState('all'); // 'all', 'season', 'occasion'
+    const [groupBy, setGroupBy] = useState('all'); 
 
     useEffect(() => {
         loadFavorites();
 
-        // Listen for storage changes (when favorites are updated from OutfitCard)
+        
         const handleStorageChange = () => {
             loadFavorites();
         };
 
         window.addEventListener('storage', handleStorageChange);
-        // Also listen for custom event from same tab
+        
         window.addEventListener('favoritesUpdated', handleStorageChange);
 
         return () => {
@@ -66,7 +66,7 @@ const VirtualWardrobe = ({ onNavigate }) => {
     return (
         <div className="min-h-screen py-24 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                {/* Header */}
+                {}
                 <div className="text-center mb-12">
                     <div className="inline-block mb-4">
                         <div className="w-20 h-20 bg-gradient-to-br from-rose-500 to-pink-600 rounded-3xl flex items-center justify-center mx-auto shadow-lg shadow-rose-500/30">
@@ -87,7 +87,7 @@ const VirtualWardrobe = ({ onNavigate }) => {
                 </div>
 
                 {favorites.length === 0 ? (
-                    /* Empty State */
+                    
                     <div className="text-center py-20">
                         <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl p-12 max-w-2xl mx-auto">
                             <div className="text-6xl mb-6 opacity-20">💝</div>
@@ -110,9 +110,9 @@ const VirtualWardrobe = ({ onNavigate }) => {
                     </div>
                 ) : (
                     <>
-                        {/* Controls */}
+                        {}
                         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-8 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-4">
-                            {/* Group By */}
+                            {}
                             <div className="flex items-center gap-3">
                                 <span className="text-sm font-bold opacity-60 uppercase tracking-wider">Group By:</span>
                                 <div className="flex gap-2">
@@ -131,7 +131,7 @@ const VirtualWardrobe = ({ onNavigate }) => {
                                 </div>
                             </div>
 
-                            {/* Clear All */}
+                            {}
                             <button
                                 onClick={clearAllFavorites}
                                 className="text-sm font-bold text-rose-400 hover:text-rose-300 transition-colors flex items-center gap-2"
@@ -143,7 +143,7 @@ const VirtualWardrobe = ({ onNavigate }) => {
                             </button>
                         </div>
 
-                        {/* Grouped Outfits */}
+                        {}
                         {Object.entries(groups).map(([groupName, groupOutfits]) => (
                             <div key={groupName} className="mb-12">
                                 {groupBy !== 'all' && (

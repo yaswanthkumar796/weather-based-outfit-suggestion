@@ -13,16 +13,16 @@ const SettingsModal = ({
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-      {/* Backdrop */}
+      {}
       <div 
         className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       ></div>
 
-      {/* Modal Content */}
+      {}
       <div className="relative bg-[var(--bg-secondary)] backdrop-blur-xl border border-[var(--border-color)] rounded-3xl p-8 max-w-md w-full shadow-2xl animate-fade-in-up text-[var(--text-primary)]">
         
-        {/* Header */}
+        {}
         <div className="flex justify-between items-center mb-8">
           <h2 className="text-2xl font-bold tracking-wide">Settings</h2>
           <button 
@@ -35,10 +35,10 @@ const SettingsModal = ({
           </button>
         </div>
 
-        {/* Settings Options */}
+        {}
         <div className="space-y-8">
           
-          {/* Unit Selection */}
+          {}
           <div>
             <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3 uppercase tracking-wider">Temperature Unit</label>
             <div className="flex bg-[var(--card-bg)] rounded-xl p-1 border border-[var(--border-color)] gap-2">
@@ -65,7 +65,7 @@ const SettingsModal = ({
             </div>
           </div>
 
-          {/* Gender Selection */}
+          {}
           <div>
             <label className="block text-sm font-medium text-[var(--text-secondary)] mb-3 uppercase tracking-wider">Outfit Preference</label>
             <div className="flex bg-[var(--card-bg)] rounded-xl p-1 border border-[var(--border-color)] gap-2">
@@ -95,7 +95,7 @@ const SettingsModal = ({
 
         </div>
 
-        {/* Footer Actions */}
+        {}
         <div className="flex gap-4 mt-8 pt-6 border-t border-[var(--border-color)]">
           <button 
             onClick={onClose}

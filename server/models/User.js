@@ -7,23 +7,23 @@ const UserSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true, // Ensures no two users share the same email
+    unique: true, 
   },
   password: {
     type: String,
     required: true,
   },
-  location: { // Stored for personalized weather fetch
+  location: { 
     latitude: Number,
     longitude: Number,
   },
-  preferences: { // Filters for recommendations
-    favoriteSeasons: [String], // e.g., ['Summer', 'Spring']
-    avoidColors: [String],     // e.g., ['Neon', 'Brown']
-    style: String,             // e.g., 'Casual', 'Formal', 'Sporty'
+  preferences: { 
+    favoriteSeasons: [String], 
+    avoidColors: [String],     
+    style: String,             
   },
 }, {
-  timestamps: true // Adds createdAt and updatedAt fields
+  timestamps: true 
 });
 
 module.exports = mongoose.model('User', UserSchema);

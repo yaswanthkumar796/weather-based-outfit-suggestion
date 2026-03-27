@@ -73,7 +73,7 @@ const Blog = ({ onPostClick }) => {
             className="group relative bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300 hover:-translate-y-2 fade-in-up"
             style={{ animationDelay: `${idx * 100}ms` }}
           >
-            {/* Image Container */}
+            {}
             <div className="h-64 overflow-hidden">
               <img
                 src={post.image}
@@ -82,7 +82,7 @@ const Blog = ({ onPostClick }) => {
               />
             </div>
 
-            {/* Content */}
+            {}
             <div className="p-8">
               <div className="flex justify-start items-center text-xs font-bold tracking-widest opacity-60 mb-4 uppercase">
                 <span>{post.readTime}</span>

@@ -4,19 +4,10 @@ const Outfit = require('./models/Outfit');
 
 dotenv.config();
 
-// Image IDs (Verified)
-// Men Summer Casual: cV58ouCA7dU, ro81IGqGtwY
-// Women Summer Casual: IEakboWH0hk, 9lS5Bvr2T3g
-// Men Winter Casual: Ocb3KD56qRk, nFP8zIPH9Ls
-// Women Winter Casual: 8Uc8_4YVbns, QkjZggYBT6M
-// Men Business: zCSlmX3-98I, yMpZJvTEspk
-// Women Business: 9MoQKZW0nGU, DOXaUBo59Y8
-// Women Party: 7mmJBBdhbE8, gd63m4X2zE0
-// Men Party: VBwA79hD5Os, UhK_3O5eQHU
 
 const outfits = [
 
-  // summer -> casual -> male
+  
   {
     name: "Coastal Linen Vibe",
     category: "Casual",
@@ -41,7 +32,7 @@ const outfits = [
     season: ["Summer"],
     gender: "Male"
   },
-  //  summer -> casual -> female
+  
   {
     name: "Boho Summer Chic",
     category: "Casual",
@@ -66,7 +57,7 @@ const outfits = [
     season: ["Summer"],
     gender: "Female"
   },
-  // winter -> casual -> male
+  
 
   {
     name: "Classic Overcoat Layer",
@@ -93,7 +84,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // winter -> casual -> female
+  
   {
     name: "Pink Puffer Streetwear",
     category: "Casual",
@@ -118,7 +109,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Female"
   },
-  // Spring Casual male
+  
 
   {
     name: "Spring Tailored Casual",
@@ -145,7 +136,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Spring -> Casual -> Female
+  
   {
     name: "Spring Blazer Chic",
     category: "Casual",
@@ -171,7 +162,7 @@ const outfits = [
     gender: "Female"
   },
 
-  // Fall -> Casual -> Male
+  
   {
     name: "Autumn Earth Tones",
     category: "Casual",
@@ -197,7 +188,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Fall -> Casual -> Female
+  
   {
     name: "Autumn Street Layering",
     category: "Casual",
@@ -222,7 +213,7 @@ const outfits = [
     season: ["Fall"],
     gender: "Female"
   },
-  // Winter -> Casual -> Unisex
+  
   {
     name: "Winter Minimalist Layer",
     category: "Casual",
@@ -240,7 +231,7 @@ const outfits = [
     gender: "Unisex"
   },
 
-  // Summer -> Formal -> Male
+  
   {
     name: "Classic Navy Tailoring",
     category: "Formal",
@@ -266,7 +257,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Summer -> Formal -> Female
+  
   {
     name: "Classic Corporate Blazer",
     category: "Formal",
@@ -292,7 +283,7 @@ const outfits = [
     gender: "Female"
   },
 
-  // Summer -> Formal -> Unisex
+  
   {
     name: "Urban Professional Collaboration",
     category: "Formal",
@@ -317,7 +308,7 @@ const outfits = [
     season: ["Summer"],
     gender: "Unisex"
   },
-  // Winter -> Formal -> Male
+  
   {
     name: "Classic Overcoat Elegance",
     category: "Formal",
@@ -327,7 +318,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Winter -> Formal -> Female
+  
 
   {
     name: "Urban Executive Bridge",
@@ -338,7 +329,7 @@ const outfits = [
     gender: "Female"
   },
 
-  // Winter -> Formal -> Unisex
+  
   {
     name: "Architectural Business Minimalist",
     category: "Formal",
@@ -364,7 +355,7 @@ const outfits = [
     gender: "Unisex"
   },
 
-  // Spring -> Formal -> Male
+  
   {
     name: "Spring Charcoal Professional",
     category: "Formal",
@@ -390,7 +381,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Spring -> Formal -> Female
+  
   {
     name: "Spring Multi-Ethnic Professional",
     category: "Formal",
@@ -415,7 +406,7 @@ const outfits = [
     season: ["Spring"],
     gender: "Female"
   },
-  // Spring -> Formal -> Unisex
+  
   {
     name: "Modern Professional Duo",
     category: "Formal",
@@ -440,7 +431,7 @@ const outfits = [
     season: ["Spring"],
     gender: "Unisex"
   },
-  // Work -> Summer -> Male
+  
   {
     name: "Linen Summer Professional",
     category: "Work",
@@ -466,7 +457,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Work -> Summer -> Female
+  
   {
     name: "Summer Smart-Casual Professional",
     category: "Work",
@@ -491,7 +482,7 @@ const outfits = [
     season: ["Summer"],
     gender: "Female"
   },
-  // Work -> Winter -> Male
+  
   {
     name: "Winter Corporate Overcoat",
     category: "Work",
@@ -516,7 +507,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Male"
   },
-  // Work -> Winter -> Female
+  
   {
     name: "Winter Corporate Minimalism",
     category: "Work",
@@ -541,7 +532,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Female"
   },
-  // Work -> Spring -> Male
+  
   {
     name: "Spring Tailored Professional",
     category: "Work",
@@ -566,7 +557,7 @@ const outfits = [
     season: ["Spring"],
     gender: "Male"
   },
-  // Work -> Spring -> Female
+  
   {
     name: "Classic Striped Professional",
     category: "Work",
@@ -591,7 +582,7 @@ const outfits = [
     season: ["Spring"],
     gender: "Female"
   },
-  // Party -> Summer -> Male
+  
   {
     name: "Summer Night Social",
     category: "Party",
@@ -617,7 +608,7 @@ const outfits = [
     gender: "Male"
   },
 
-  // Party -> Summer -> Female
+  
   {
     name: "Summer Chic Social",
     category: "Party",
@@ -643,7 +634,7 @@ const outfits = [
     gender: "Female"
   },
 
-  // Party -> Winter -> Male
+  
   {
     name: "Winter Pattern Statement",
     category: "Party",
@@ -668,7 +659,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Male"
   },
-  // Party -> Winter -> Female
+  
   {
     name: "Winter Night Glamour",
     category: "Party",
@@ -693,7 +684,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Female"
   },
-  // Party -> Spring -> Male
+  
   {
     name: "Spring Denim Social",
     category: "Party",
@@ -718,7 +709,7 @@ const outfits = [
     season: ["Spring"],
     gender: "Male"
   },
-  // Party -> Spring -> Female
+  
   {
     name: "Spring Celebration Group",
     category: "Party",
@@ -744,7 +735,7 @@ const outfits = [
     gender: "Female"
   },
 
-  // Sports/Active -> Winter -> Female
+  
 
   {
     name: "Winter Training Essential",
@@ -762,7 +753,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Female"
   },
-  // Sports/Active -> Winter -> Male (ADDED)
+  
   {
     name: "Winter Run Layering",
     category: "Sports/Active",
@@ -771,7 +762,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Male"
   },
-  // Date -> Winter -> Female
+  
   {
     name: "Golden Hour Glow",
     category: "Date",
@@ -796,7 +787,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Female"
   },
-  // Date -> Winter -> Male
+  
   {
     name: "Elevated Monochrome Night",
     category: "Date",
@@ -821,7 +812,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Male"
   },
-  // Travel -> Winter -> Female
+  
   {
     name: "Winter Park Arrival",
     category: "Travel",
@@ -846,7 +837,7 @@ const outfits = [
     season: ["Winter"],
     gender: "Female"
   },
-  // Travel -> Winter -> Male
+  
   {
     name: "Urban Explorer Layering",
     category: "Travel",

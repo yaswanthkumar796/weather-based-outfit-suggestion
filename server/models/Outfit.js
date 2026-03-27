@@ -7,23 +7,23 @@ const OutfitSchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  // KEY FIELDS FOR FILTERING LOGIC
+  
 
   season: {
-    type: [String], // e.g., ['Summer', 'Spring']
+    type: [String], 
     required: true
   },
-  // OUTFIT ITEMS
+  
   items: {
-    type: [String], // List of items: ['Light T-Shirt', 'Shorts', 'Sneakers']
+    type: [String], 
     required: true
   },
   imageUrl: {
-    type: String, // Link to the outfit image
+    type: String, 
     required: true
   },
   category: {
-    type: String, // e.g., 'Formal', 'Casual', 'Sporty'
+    type: String, 
   },
   gender: {
     type: String,
@@ -31,7 +31,7 @@ const OutfitSchema = new mongoose.Schema({
     default: 'Unisex',
     required: true
   },
-  // COLOR PSYCHOLOGY FEATURE
+  
   colors: {
     type: [String],
     enum: ['Red', 'Orange', 'Yellow', 'Green', 'Blue', 'Purple',

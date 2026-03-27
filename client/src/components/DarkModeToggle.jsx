@@ -4,7 +4,7 @@ const DarkModeToggle = () => {
     const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
-        // Check localStorage for saved theme preference
+        
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme === 'light') {
             setIsDark(false);
@@ -20,11 +20,11 @@ const DarkModeToggle = () => {
         setIsDark(newTheme);
 
         if (newTheme) {
-            // Dark mode
+            
             document.documentElement.removeAttribute('data-theme');
             localStorage.setItem('theme', 'dark');
         } else {
-            // Light mode
+            
             document.documentElement.setAttribute('data-theme', 'light');
             localStorage.setItem('theme', 'light');
         }
@@ -42,7 +42,7 @@ const DarkModeToggle = () => {
             }}
             aria-label="Toggle dark mode"
         >
-            {/* Sliding Circle */}
+            {}
             <div
                 className="absolute top-0.5 transition-all duration-300 ease-in-out"
                 style={{
@@ -61,13 +61,13 @@ const DarkModeToggle = () => {
                     justifyContent: 'center'
                 }}
             >
-                {/* Icon */}
+                {}
                 <span className="text-xs transition-transform duration-300 group-hover:scale-110">
                     {isDark ? '🌙' : '☀️'}
                 </span>
             </div>
 
-            {/* Background Icons */}
+            {}
             <div className="absolute inset-0 flex items-center justify-between px-2 text-xs pointer-events-none">
                 <span className={`transition-opacity duration-300 ${isDark ? 'opacity-0' : 'opacity-40'}`}>☀️</span>
                 <span className={`transition-opacity duration-300 ${isDark ? 'opacity-40' : 'opacity-0'}`}>🌙</span>

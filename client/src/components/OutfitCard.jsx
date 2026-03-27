@@ -4,24 +4,24 @@ const OutfitCard = ({ outfit, delay }) => {
   const [isFavorite, setIsFavorite] = useState(false);
   const [showHeartAnimation, setShowHeartAnimation] = useState(false);
 
-  // Check if outfit is in favorites on mount
+  
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem('favoriteOutfits') || '[]');
     setIsFavorite(favorites.some(fav => fav._id === outfit._id));
   }, [outfit._id]);
 
   const toggleFavorite = (e) => {
-    e.stopPropagation(); // Prevent card click if we add that later
+    e.stopPropagation(); 
 
     const favorites = JSON.parse(localStorage.getItem('favoriteOutfits') || '[]');
 
     if (isFavorite) {
-      // Remove from favorites
+      
       const updated = favorites.filter(fav => fav._id !== outfit._id);
       localStorage.setItem('favoriteOutfits', JSON.stringify(updated));
       setIsFavorite(false);
     } else {
-      // Add to favorites
+      
       favorites.push(outfit);
       localStorage.setItem('favoriteOutfits', JSON.stringify(favorites));
       setIsFavorite(true);
@@ -29,7 +29,7 @@ const OutfitCard = ({ outfit, delay }) => {
       setTimeout(() => setShowHeartAnimation(false), 600);
     }
 
-    // Notify other components (like VirtualWardrobe) of the change
+    
     window.dispatchEvent(new Event('favoritesUpdated'));
   };
 
@@ -38,7 +38,7 @@ const OutfitCard = ({ outfit, delay }) => {
       className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 h-full flex flex-col animate-fade-in-up"
       style={{ animationDelay: `${delay}ms`, animationFillMode: 'both' }}
     >
-      {/* Image Section */}
+      {}
       <div className="relative h-64 overflow-hidden">
         <img
           src={outfit.imageUrl}
@@ -46,15 +46,15 @@ const OutfitCard = ({ outfit, delay }) => {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           loading="lazy"
         />
-        {/* Gradient Overlay */}
+        {}
         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/70 transition-all duration-500"></div>
 
-        {/* Category Badge */}
+        {}
         <div className="absolute top-3 right-3 bg-white/20 backdrop-blur-md px-3 py-1 rounded-full text-xs font-bold text-white border border-white/30 truncate max-w-[150px] group-hover:bg-white/30 transition-all">
           {outfit.category}
         </div>
 
-        {/* Favorite Button */}
+        {}
         <button
           onClick={toggleFavorite}
           className="absolute top-3 left-3 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center justify-center hover:bg-white/40 transition-all duration-300 group-hover:scale-110"
@@ -75,16 +75,16 @@ const OutfitCard = ({ outfit, delay }) => {
           </svg>
         </button>
 
-        {/* Bottom Info */}
+        {}
         <div className="absolute bottom-3 left-3 text-white">
           <p className="text-xs opacity-80 uppercase tracking-wider mb-1">{outfit.season.join(' / ')}</p>
           <h3 className="text-xl font-bold leading-tight drop-shadow-lg">{outfit.name}</h3>
         </div>
       </div>
 
-      {/* Content Section */}
+      {}
       <div className="p-5 bg-white flex-1 flex flex-col">
-        {/* Items Tags */}
+        {}
         <div className="flex flex-wrap gap-2 mb-4">
           {outfit.items.map((item, index) => (
             <span
@@ -96,7 +96,7 @@ const OutfitCard = ({ outfit, delay }) => {
           ))}
         </div>
 
-        {/* Footer */}
+        {}
         <div className="mt-auto pt-4 border-t border-slate-100 flex justify-between items-center text-xs text-slate-400 font-medium">
           <span className="uppercase tracking-wider">Recommended</span>
           {isFavorite && (

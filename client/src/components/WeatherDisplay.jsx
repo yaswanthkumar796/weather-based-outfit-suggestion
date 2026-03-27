@@ -16,17 +16,17 @@ const WeatherDisplay = ({ weather, location, onChangeLocation, isLightText, unit
   };
 
   const iconUrl = `https://openweathermap.org/img/wn/${weather.icon}@4x.png`;
-  // Use standard theme color rather than forced override, so it adapts to Light/Dark mode
-  // Force white text for readability on black cards
+  
+  
   const textColor = 'text-white';
   const glassBg = 'bg-black/60 border-white/60 shadow-[0_0_20px_rgba(255,255,255,0.4)]';
 
   return (
     <div className={`p-10 rounded-[2.5rem] backdrop-blur-2xl border ${glassBg} relative overflow-hidden group h-full flex flex-col justify-between transition-all hover:scale-[1.01] duration-500`}>
-      {/* Dynamic Background Glow */}
+      {}
       <div className="absolute -top-20 -right-20 w-64 h-64 bg-white/20 blur-[100px] rounded-full pointer-events-none animate-pulse-slow"></div>
 
-      {/* Header: Location & Date */}
+      {}
       <div className="flex justify-between items-start z-10">
         <div>
           <div className="flex flex-col">
@@ -47,13 +47,13 @@ const WeatherDisplay = ({ weather, location, onChangeLocation, isLightText, unit
           </div>
         </div>
 
-        {/* Season / Badge */}
+        {}
         <div className={`px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest backdrop-blur-xl bg-white/20 border border-white/10 shadow-sm ${textColor}`}>
           {weather.season || 'CURRENT'}
         </div>
       </div>
 
-      {/* Main Stats: Temp & Icon */}
+      {}
       <div className="flex items-center justify-between my-8 z-10 relative">
         <div className="flex flex-col">
           <h1 className={`text-[9rem] leading-none font-thin tracking-tighter ${textColor} drop-shadow-xl`}>
@@ -62,14 +62,14 @@ const WeatherDisplay = ({ weather, location, onChangeLocation, isLightText, unit
           <p className={`text-2xl font-light tracking-wide capitalize opacity-90 pl-2 ${textColor}`}>{weather.description}</p>
         </div>
 
-        {/* Animated Icon */}
+        {}
         <div className="relative">
           <div className="absolute inset-0 bg-white/20 blur-3xl rounded-full scale-75 animate-pulse"></div>
           <img src={iconUrl} alt={weather.condition} className="w-48 h-48 object-contain drop-shadow-2xl relative z-10 transform group-hover:scale-110 transition-transform duration-500" />
         </div>
       </div>
 
-      {/* Footer Stats Grid */}
+      {}
       <div className={`grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-3xl bg-black/5 border border-white/5 backdrop-blur-sm ${textColor}`}>
         <div className="text-center">
           <p className="text-[10px] font-bold uppercase tracking-[0.2em] opacity-50 mb-1">Feels Like</p>

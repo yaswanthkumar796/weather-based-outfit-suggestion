@@ -4,7 +4,6 @@ const { getCurrentWeather } = require('../services/weatherService');
 const { getSuggestions } = require('../services/outfitService');
 const { getRecommendedColors } = require('../services/colorPsychologyService');
 
-// 1. Suggest Outfit Logic
 const suggestOutfit = async (req, res) => {
   const { lat, lon, gender } = req.query;
 
@@ -13,20 +12,20 @@ const suggestOutfit = async (req, res) => {
   }
 
   try {
-    // Get Real Weather
+    
     const weatherData = await getCurrentWeather(lat, lon);
 
-    // Get Color Recommendations based on weather
+    
     const colorRecommendations = getRecommendedColors(
       weatherData.weather[0].main,
       weatherData.weather[0].description,
       weatherData.main.temp
     );
 
-    // Get Suggestions based on that weather
+    
     const suggestions = await getSuggestions(weatherData, { gender });
 
-    // Send back weather, suggestions, and color recommendations
+    
     res.json({
       weather: weatherData,
       suggestions,
@@ -39,14 +38,14 @@ const suggestOutfit = async (req, res) => {
   }
 };
 
-// 2. Create Outfit Logic (NEW)
-// 2. Submit Outfit Request (Modified for Approval Flow)
+
+
 const createOutfit = async (req, res) => {
   try {
-    // Instead of creating an Outfit directly, we create a Request for approval
+    
     const newRequest = new Request({
       ...req.body,
-      status: 'Pending' // Ensure it starts as pending
+      status: 'Pending' 
     });
     const savedRequest = await newRequest.save();
     res.status(201).json(savedRequest);
@@ -55,7 +54,7 @@ const createOutfit = async (req, res) => {
   }
 };
 
-// 3. Get All Outfits (for Gallery)
+
 const getAllOutfits = async (req, res) => {
   try {
     const outfits = await Outfit.find({}).sort({ createdAt: -1 });

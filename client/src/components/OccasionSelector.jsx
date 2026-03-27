@@ -15,7 +15,7 @@ const OccasionSelector = ({ selected, onSelect }) => {
     <div className="w-full max-w-4xl mx-auto mb-8">
       <h3 className="text-xl font-light mb-4 text-center text-[var(--text-primary)] opacity-90">Select an occasion</h3>
       
-      {/* Centered container with rounded corners, subtle dashed border, soft gradient dark background */}
+      {}
       <div className="
         relative
         p-6 
@@ -48,17 +48,17 @@ const OccasionSelector = ({ selected, onSelect }) => {
                 }
               `}
             >
-              {/* Button Background with Glassmorphism and Gradient */}
+              {}
               <div className={`
                 absolute inset-0 opacity-20 group-hover:opacity-30 transition-opacity
                 bg-gradient-to-r ${occasion.color}
                 ${isSelected ? 'opacity-100' : ''}
               `}></div>
 
-              {/* Glass shine effect */}
+              {}
               <div className="absolute inset-0 bg-gradient-to-t from-transparent to-white/10 pointer-events-none"></div>
 
-              {/* Content */}
+              {}
               <span className="text-lg drop-shadow-sm filter relative z-10">{occasion.emoji}</span>
               <span className={`
                 text-sm font-medium tracking-wide relative z-10

@@ -1,10 +1,7 @@
-/**
- * Color Psychology Service
- * Maps weather conditions to recommended colors based on psychological principles
- */
+
 
 const colorPsychology = {
-    // Weather condition to color mapping
+    
     sunny: {
         mood: 'Energetic & Fresh',
         description: 'Cool tones feel refreshing in the heat',
@@ -43,18 +40,12 @@ const colorPsychology = {
     }
 };
 
-/**
- * Get recommended colors based on weather condition
- * @param {string} weatherMain - Main weather condition (e.g., 'Rain', 'Clear', 'Clouds')
- * @param {string} weatherDescription - Detailed description
- * @param {number} temperature - Temperature in Celsius
- * @returns {object} Color recommendations with mood and description
- */
+
 const getRecommendedColors = (weatherMain, weatherDescription = '', temperature = 20) => {
-    // Normalize weather condition
+    
     const condition = weatherMain.toLowerCase();
 
-    // Map weather API responses to our color psychology categories
+    
     if (condition.includes('rain') || condition.includes('drizzle')) {
         return colorPsychology.rainy;
     }
@@ -72,35 +63,25 @@ const getRecommendedColors = (weatherMain, weatherDescription = '', temperature 
     }
 
     if (condition.includes('clear') || condition.includes('sun')) {
-        // Hot sunny day vs mild sunny day
+        
         if (temperature > 28) {
-            return colorPsychology.sunny; // Cool colors for hot weather
+            return colorPsychology.sunny; 
         } else {
-            return colorPsychology.clear; // Vibrant colors for mild weather
+            return colorPsychology.clear; 
         }
     }
 
-    // Default to clear/sunny
+    
     return colorPsychology.clear;
 };
 
-/**
- * Check if an outfit matches recommended colors
- * @param {array} outfitColors - Array of colors in the outfit
- * @param {array} recommendedColors - Array of recommended colors
- * @returns {boolean} True if outfit has at least one recommended color
- */
+
 const isColorMatch = (outfitColors, recommendedColors) => {
     if (!outfitColors || !recommendedColors) return false;
     return outfitColors.some(color => recommendedColors.includes(color));
 };
 
-/**
- * Calculate color match score (0-100)
- * @param {array} outfitColors - Array of colors in the outfit
- * @param {array} recommendedColors - Array of recommended colors
- * @returns {number} Match score percentage
- */
+
 const getColorMatchScore = (outfitColors, recommendedColors) => {
     if (!outfitColors || !outfitColors.length) return 0;
     if (!recommendedColors || !recommendedColors.length) return 0;
@@ -109,11 +90,7 @@ const getColorMatchScore = (outfitColors, recommendedColors) => {
     return Math.round((matchingColors.length / outfitColors.length) * 100);
 };
 
-/**
- * Get color emoji for display
- * @param {string} colorName - Name of the color
- * @returns {string} Emoji representation
- */
+
 const getColorEmoji = (colorName) => {
     const emojiMap = {
         'Red': '🔴',

@@ -12,12 +12,15 @@ const AdminDashboard = ({ onLogout }) => {
           try {
                const reqs = await getRequests();
                const feeds = await getFeedback();
-               setRequests(reqs);
+               setRequests(reqs || []);
                setFeedback(feeds.data || []);
                setLoading(false);
           } catch (error) {
                console.error("Failed to fetch data", error);
                setLoading(false);
+               if (error.status === 401) {
+                    onLogout(); // Redirect to login if unauthorized
+               }
           }
      };
 
@@ -42,7 +45,7 @@ const AdminDashboard = ({ onLogout }) => {
      return (
           <div className="min-h-screen bg-transparent py-14 px-4 sm:px-6 lg:px-8">
                <div className="max-w-5xl mx-auto space-y-10">
-                    {/* Header Section */}
+                    { }
                     <header className="flex flex-col md:flex-row md:items-center justify-between gap-6 bg-white/5 backdrop-blur-2xl border border-white/10 p-8 rounded-[2rem] shadow-2xl">
                          <div>
                               <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-indigo-400">
@@ -69,7 +72,7 @@ const AdminDashboard = ({ onLogout }) => {
                          </div>
                     </header>
 
-                    {/* Navigation Tabs */}
+                    { }
                     <nav className="flex items-center p-1.5 bg-white/5 backdrop-blur-md border border-white/5 rounded-2xl w-fit mx-auto md:mx-0">
                          <button
                               onClick={() => setActiveTab('requests')}
@@ -97,7 +100,7 @@ const AdminDashboard = ({ onLogout }) => {
                          </button>
                     </nav>
 
-                    {/* Content Area */}
+                    { }
                     <main className="min-h-[400px]">
                          {loading ? (
                               <div className="flex flex-col items-center justify-center py-20 animate-pulse">

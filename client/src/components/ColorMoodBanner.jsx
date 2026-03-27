@@ -5,7 +5,7 @@ const ColorMoodBanner = ({ weatherCondition, temperature, colorRecommendations }
 
     const { mood, description, colors, icon } = colorRecommendations;
 
-    // Color to hex mapping for visual display
+    
     const colorHexMap = {
         'Red': '#EF4444',
         'Orange': '#F97316',
@@ -37,15 +37,15 @@ const ColorMoodBanner = ({ weatherCondition, temperature, colorRecommendations }
                     borderColor: 'var(--border-color)'
                 }}
             >
-                {/* Decorative Background Pattern */}
+                {}
                 <div className="absolute inset-0 opacity-5">
                     <div className="absolute top-0 left-0 w-64 h-64 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full blur-3xl"></div>
                     <div className="absolute bottom-0 right-0 w-64 h-64 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full blur-3xl"></div>
                 </div>
 
-                {/* Content */}
+                {}
                 <div className="relative z-10">
-                    {/* Header */}
+                    {}
                     <div className="flex items-center gap-3 mb-4">
                         <span className="text-4xl">{icon}</span>
                         <div>

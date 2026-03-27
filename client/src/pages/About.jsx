@@ -3,7 +3,7 @@ import React from 'react';
 const About = () => {
   return (
     <div className="container mx-auto px-4 py-12 max-w-6xl">
-      {/* Header */}
+      {}
       <div className="text-center mb-16 fade-in-up">
         <h1 className="text-5xl md:text-7xl font-bold mb-6 tracking-tight">About Us</h1>
         <p className="text-xl md:text-2xl opacity-80 max-w-3xl mx-auto leading-relaxed">
@@ -11,7 +11,7 @@ const About = () => {
         </p>
       </div>
 
-      {/* Section 1: Mission + Image */}
+      {}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24 fade-in-up">
         <div className="order-2 md:order-1 relative rounded-2xl overflow-hidden shadow-2xl h-[400px]">
              <img 

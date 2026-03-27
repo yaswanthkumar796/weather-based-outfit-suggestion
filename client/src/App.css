@@ -1,8 +1,8 @@
-/* IMPORT FONTS */
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
 
 :root {
-  /* THEME GRADIENTS */
+  
   --bg-clear: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
   --bg-clouds: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
   --bg-rain: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -10,18 +10,18 @@
   --bg-thunder: linear-gradient(135deg, #141E30 0%, #243B55 100%);
   --bg-default: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 
-  /* GLASS VARIABLES */
+  
   --glass-bg: rgba(255, 255, 255, 0.2);
   --glass-border: rgba(255, 255, 255, 0.3);
   --glass-blur: blur(20px);
   --shadow-lg: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
 
-  /* TYPOGRAPHY */
+  
   --font-main: 'Outfit', sans-serif;
   --text-primary: #ffffff;
   --text-secondary: rgba(255, 255, 255, 0.8);
 
-  /* TRANSITIONS */
+  
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -42,7 +42,7 @@ body {
   flex-direction: column;
 }
 
-/* DYNAMIC BACKGROUND LAYER */
+
 .app-background {
   position: fixed;
   top: 0;
@@ -54,7 +54,7 @@ body {
   transition: background 1.5s ease-in-out;
 }
 
-/* --- UTILITIES --- */
+
 
 .glass-panel {
   background: var(--glass-bg);
@@ -70,7 +70,7 @@ body {
   transform: translateY(-5px);
 }
 
-/* SLIM GLASS (for nav items/small cards) */
+
 .glass-panel-sm {
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
@@ -79,9 +79,9 @@ body {
   transition: all var(--transition-fast);
 }
 
-/* --- LAYOUTS --- */
 
-/* HEADER */
+
+
 .app-header {
   padding: 1.5rem;
   display: flex;
@@ -97,7 +97,7 @@ body {
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* NAV */
+
 .top-nav {
   position: absolute;
   top: 1.5rem;
@@ -131,7 +131,7 @@ body {
   align-self: flex-start;
 }
 
-/* LOCATION PROMPT */
+
 .home-center {
   flex: 1;
   display: flex;
@@ -195,7 +195,7 @@ body {
   background: rgba(255, 255, 255, 0.3);
 }
 
-/* DASHBOARD */
+
 .dashboard {
   max-width: 900px;
   width: 90%;
@@ -203,7 +203,7 @@ body {
   padding-bottom: 4rem;
 }
 
-/* WEATHER DISPLAY */
+
 .weather-display {
   padding: 2.5rem;
   margin-bottom: 2rem;
@@ -271,7 +271,7 @@ body {
   font-weight: 600;
 }
 
-/* FORECAST CAROUSEL */
+
 .forecast-section {
   margin: 3rem 0;
 }
@@ -291,12 +291,12 @@ body {
   overflow-x: auto;
   padding-bottom: 1rem;
   scrollbar-width: none;
-  /* Firefox */
+  
 }
 
 .forecast-carousel::-webkit-scrollbar {
   display: none;
-  /* Chrome/Safari */
+  
 }
 
 .forecast-card {
@@ -340,7 +340,7 @@ body {
   opacity: 0.6;
 }
 
-/* OUTFIT GRID */
+
 .outfit-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
@@ -349,7 +349,7 @@ body {
 
 .outfit-card {
   padding: 0 !important;
-  /* Override glass-panel padding */
+  
   overflow: hidden;
   height: 100%;
 }
@@ -394,7 +394,7 @@ body {
   border-radius: 4px;
 }
 
-/* ANIMATIONS */
+
 @keyframes fadeIn {
   from {
     opacity: 0;

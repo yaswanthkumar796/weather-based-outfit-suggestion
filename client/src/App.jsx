@@ -19,7 +19,7 @@ import OutfitGallery from './pages/OutfitGallery';
 import VirtualWardrobe from './pages/VirtualWardrobe';
 import ColorMoodBanner from './components/ColorMoodBanner';
 import BlogPost from './pages/BlogPost';
-// No App.css import needed, using Tailwind
+
 
 function App() {
   const [data, setData] = useState(null);
@@ -30,17 +30,17 @@ function App() {
   const [view, setView] = useState('home');
   const [adminUser, setAdminUser] = useState(null);
   const [selectedOccasion, setSelectedOccasion] = useState(null);
-  const [selectedBlogPost, setSelectedBlogPost] = useState(null); // New state for active blog post
-  const [unit, setUnit] = useState('C'); // 'C' or 'F'
-  const [gender, setGender] = useState('female'); // 'male' or 'female'
+  const [selectedBlogPost, setSelectedBlogPost] = useState(null); 
+  const [unit, setUnit] = useState('C'); 
+  const [gender, setGender] = useState('female'); 
 
-  // Pending settings state
+  
   const [pendingUnit, setPendingUnit] = useState('C');
   const [pendingGender, setPendingGender] = useState('female');
 
   const [showSettings, setShowSettings] = useState(false);
-  const [selectedReportDay, setSelectedReportDay] = useState(null); // Detailed report modal state
-  const [colorRecommendations, setColorRecommendations] = useState(null); // Color psychology feature
+  const [selectedReportDay, setSelectedReportDay] = useState(null); 
+  const [colorRecommendations, setColorRecommendations] = useState(null); 
 
   const openSettings = () => {
     setPendingUnit(unit);
@@ -53,12 +53,12 @@ function App() {
     setGender(pendingGender);
     setShowSettings(false);
 
-    // Reload weather with new settings if we have location data
+    
     if (data && data.location) {
       setLoading(true);
-      // Uses the NEW pendingGender effectively via the state update? 
-      // State update is async, so better pass explicitly or use useEffect. 
-      // Simplest: pass pendingGender directly here.
+      
+      
+      
       fetchWeather(data.location.lat, data.location.lon, data.location.city, pendingGender)
         .then(result => {
           setData(result);
@@ -115,26 +115,26 @@ function App() {
     setView('home');
   };
 
-  // Dynamic Background classes based on weather
+  
   const getBackgroundClass = () => {
     if (!data || !data.weather) return 'bg-gradient-to-br from-slate-900 to-slate-800';
 
     switch (data.weather.condition) {
-      case 'Clear': return 'bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600'; // Deep Blue Sky
-      case 'Clouds': return 'bg-gradient-to-br from-slate-600 via-slate-700 to-indigo-800'; // Moody Grey-Blue
+      case 'Clear': return 'bg-gradient-to-br from-blue-500 via-indigo-500 to-purple-600'; 
+      case 'Clouds': return 'bg-gradient-to-br from-slate-600 via-slate-700 to-indigo-800'; 
       case 'Rain':
-      case 'Drizzle': return 'bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900'; // Deep Stormy Purple
-      case 'Snow': return 'bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-200 text-slate-800'; // Soft Icy
-      case 'Thunderstorm': return 'bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950'; // Darkest Night
-      default: return 'bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-800'; // Signature Premium Gradient
+      case 'Drizzle': return 'bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900'; 
+      case 'Snow': return 'bg-gradient-to-br from-blue-100 via-indigo-100 to-purple-200 text-slate-800'; 
+      case 'Thunderstorm': return 'bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950'; 
+      default: return 'bg-gradient-to-br from-indigo-600 via-purple-600 to-blue-800'; 
     }
   };
 
   const bgClass = getBackgroundClass();
-  const isLightText = !bgClass.includes('text-slate-800'); // Check if we need dark text for snow
+  const isLightText = !bgClass.includes('text-slate-800'); 
 
   const renderContent = () => {
-    // LOADING
+    
     if (loading) {
       return (
         <div className="flex flex-col items-center justify-center min-h-[60vh]">
@@ -144,7 +144,7 @@ function App() {
       );
     }
 
-    // ERROR
+    
     if (error) {
       return (
         <div className="flex flex-col items-center justify-center min-h-[60vh] max-w-md mx-auto text-center px-4">
@@ -156,7 +156,7 @@ function App() {
       );
     }
 
-    // SUBMIT PAGE
+    
     if (view === 'submit') {
       return (
         <div className="container mx-auto px-4 py-8">
@@ -166,7 +166,7 @@ function App() {
       );
     }
 
-    // ADMIN PAGE
+    
     if (view === 'admin') {
       return (
         <div className="container mx-auto px-4 py-8">
@@ -184,10 +184,10 @@ function App() {
       );
     }
 
-    // DASHBOARD
+    
     return (
       <div className="container mx-auto px-4 pb-12 max-w-5xl fade-in-up">
-        {/* Nav / Actions */}
+        {}
         <div className="flex justify-end gap-3 py-4">
           <button onClick={() => setView('submit')} className="px-5 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/10 hover:bg-white/20 transition font-medium text-sm">+ Add Outfit</button>
         </div>
@@ -209,7 +209,7 @@ function App() {
                   onDayClick={setSelectedReportDay}
                 />
 
-                {/* Settings Toggle moved here */}
+                {}
                 <div className="flex justify-end pr-2">
                   <button
                     onClick={openSettings}
@@ -241,10 +241,10 @@ function App() {
                   ? data.suggestions.filter(o => o.category && o.category.toLowerCase() === selectedOccasion.toLowerCase())
                   : data.suggestions;
 
-                // Filter by gender if implemented in data, otherwise just show all or filter if 'gender' prop exists
-                // Assuming data.suggestions might not ideally support gender yet, but preparing logic:
-                // const genderFiltered = filteredSuggestions.filter(o => !o.gender || o.gender === gender);
-                // For now, using all suggestions as per current mock data structure.
+                
+                
+                
+                
 
                 return filteredSuggestions.length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -270,13 +270,13 @@ function App() {
     );
   };
 
-  // Header / Navigation Logic
+  
   const handleNavClick = (navItem) => {
     if (navItem === 'home') {
       if (view === 'home' && locationMode === 'prompt') {
-        // Already at start, do nothing or simple refresh
+        
       } else {
-        // Reset to Home/Start
+        
         setLocationMode('prompt');
         setData(null);
         setSelectedOccasion(null);
@@ -300,12 +300,12 @@ function App() {
     { id: 'admin', label: 'Admin Portal' },
   ];
 
-  // Alert Logic
+  
   const [weatherAlert, setWeatherAlert] = useState(null);
 
   useEffect(() => {
-    // Check for alerts (Rain / Air Quality) whenever weather data (current or selected) changes
-    // If we have selected a future day, use that. Otherwise use current weather.
+    
+    
     const activeWeather = selectedReportDay || data?.weather;
 
     if (activeWeather) {
@@ -340,10 +340,10 @@ function App() {
 
       if (newAlert) {
         setWeatherAlert(newAlert);
-        const timer = setTimeout(() => setWeatherAlert(null), 5000); // Auto dismiss after 5s
+        const timer = setTimeout(() => setWeatherAlert(null), 5000); 
         return () => clearTimeout(timer);
       } else {
-        setWeatherAlert(null); // Clear if no conditions met
+        setWeatherAlert(null); 
       }
     }
   }, [data, selectedReportDay]);
@@ -351,7 +351,7 @@ function App() {
   return (
     <div className="min-h-screen transition-all duration-500" style={{ background: 'var(--bg-primary)', color: 'var(--text-primary)' }}>
 
-      {/* Dynamic Pop-up Alert */}
+      {}
       {weatherAlert && (
         <div className={`fixed top-24 right-4 z-[100] ${weatherAlert.color} backdrop-blur-md text-white px-6 py-4 rounded-2xl shadow-2xl animate-bounce flex items-center gap-4 max-w-sm border border-white/20`}>
           <div className="bg-white/20 p-2 rounded-full">
@@ -364,11 +364,11 @@ function App() {
         </div>
       )}
 
-      {/* Premium Glassmorphism Header */}
+      {}
       <header className="fixed top-0 w-full z-50 bg-black/20 backdrop-blur-2xl border-b border-white/10 transition-all duration-500">
         <div className="container mx-auto max-w-7xl flex items-center justify-between px-6 lg:px-8 py-5">
 
-          {/* Logo */}
+          {}
           <div
             className="text-xl lg:text-2xl font-black tracking-[0.15em] uppercase cursor-pointer text-white drop-shadow-lg hover:scale-105 transition-transform flex items-center gap-3"
             onClick={() => handleNavClick('home')}
@@ -380,9 +380,9 @@ function App() {
             <span className="sm:hidden">W2W</span>
           </div>
 
-          {/* Desktop Navigation - Primary Items Only */}
+          {}
           <nav className="hidden lg:flex items-center gap-2">
-            {/* Primary Nav Items */}
+            {}
             {[
               { id: 'home', label: 'Home', icon: '🏠' },
               { id: 'gallery', label: 'Gallery', icon: '🖼️' },
@@ -404,7 +404,7 @@ function App() {
               </button>
             ))}
 
-            {/* More Dropdown */}
+            {}
             <div className="relative group">
               <button className={`px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-300 flex items-center gap-2 ${
                 ['blog', 'faq', 'feedback', 'about'].includes(view)
@@ -417,7 +417,7 @@ function App() {
                 </svg>
               </button>
 
-              {/* Dropdown Menu */}
+              {}
               <div className="absolute top-full right-0 mt-2 w-48 bg-slate-900/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 overflow-hidden">
                 {[
                   { id: 'blog', label: 'Blog', icon: '📝' },
@@ -442,12 +442,12 @@ function App() {
             </div>
           </nav>
 
-          {/* Right Actions */}
+          {}
           <div className="flex items-center gap-3 lg:gap-4">
-            {/* Dark Mode Toggle */}
+            {}
             <DarkModeToggle />
 
-            {/* Admin Link - Desktop Only */}
+            {}
             <button
               onClick={() => handleNavClick('admin')}
               className={`
@@ -465,7 +465,7 @@ function App() {
               Admin
             </button>
 
-            {/* Mobile Menu Button */}
+            {}
             <button
               onClick={() => setShowSettings(!showSettings)}
               className="lg:hidden text-white p-2 hover:bg-white/10 rounded-xl transition-all"
@@ -478,7 +478,7 @@ function App() {
 
         </div>
 
-        {/* Mobile Menu Dropdown */}
+        {}
         {showSettings && (
           <div className="lg:hidden bg-slate-900/98 backdrop-blur-xl border-t border-white/10 animate-fade-in-up">
             <div className="container mx-auto px-6 py-4 space-y-1">
@@ -505,18 +505,18 @@ function App() {
         )}
       </header>
 
-      {/* Spacer for fixed header (Only show if NOT in prompt/hero mode to avoid double spacing or gap) */}
+      {}
       {locationMode !== 'prompt' && <div className="h-20"></div>}
 
       <main className="fade-in-up">
         {(() => {
-          // Render logic using immediate invocation to handle new views cleanly
+          
 
-          // New Pages
+          
           if (view === 'gallery') return <OutfitGallery />;
           if (view === 'wardrobe') return <VirtualWardrobe onNavigate={(page) => setView(page)} />;
 
-          // Placeholders for new pages
+          
           if (view === 'blog') return (
             <div className="container mx-auto px-4 py-8">
               <button onClick={() => setView('home')} className="mb-6 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full hover:bg-white/20 transition">← Back</button>
@@ -545,12 +545,12 @@ function App() {
             </div>
           );
 
-          // Default existing content (Home, Admin, Submit)
+          
           return renderContent();
         })()}
       </main>
 
-      {/* Settings Modal */}
+      {}
       <SettingsModal
         isOpen={showSettings}
         onClose={() => setShowSettings(false)}

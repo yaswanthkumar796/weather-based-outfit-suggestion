@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const LocationPrompt = ({ onUseCurrent, onSearchCity }) => {
      const [cityInput, setCityInput] = useState('');
-     const [mode, setMode] = useState('choice'); // 'choice' or 'search'
+     const [mode, setMode] = useState('choice'); 
 
      const handleSearchSubmit = (e) => {
           e.preventDefault();
@@ -14,7 +14,7 @@ const LocationPrompt = ({ onUseCurrent, onSearchCity }) => {
      return (
           <div className="w-full overflow-hidden relative min-h-[160px] flex items-end">
                <div className="w-full">
-                    {/* Primary Choices */}
+                    {}
                     <div className={`transition-all duration-500 ease-in-out transform ${mode === 'choice' ? 'translate-y-0 opacity-100' : 'translate-y-full opacity-0 absolute bottom-0 w-full pointer-events-none'}`}>
                          <div className="flex flex-col gap-4">
                               <button
@@ -42,7 +42,7 @@ const LocationPrompt = ({ onUseCurrent, onSearchCity }) => {
                          </div>
                     </div>
 
-                    {/* Search Form (Slide from below) */}
+                    {}
                     <div className={`transition-all duration-500 ease-in-out transform ${mode === 'search' ? 'translate-y-0 opacity-100' : 'translate-y-[150%] opacity-0 absolute bottom-0 w-full pointer-events-none'}`}>
                          <form onSubmit={handleSearchSubmit} className="flex flex-col gap-4">
                               <h3 className="text-sm font-bold uppercase tracking-widest mb-1 text-center" style={{ color: 'var(--text-primary)' }}>Enter your city</h3>

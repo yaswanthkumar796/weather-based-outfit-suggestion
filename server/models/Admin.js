@@ -20,7 +20,7 @@ const AdminSchema = new mongoose.Schema({
 
 const bcrypt = require('bcryptjs');
 
-// Match user entered password to password in database
+
 AdminSchema.methods.matchPassword = async function (enteredPassword) {
      return await bcrypt.compare(enteredPassword, this.password_hash);
 };

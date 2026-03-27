@@ -37,28 +37,28 @@ const OutfitGallery = () => {
     const applyFilters = () => {
         let result = [...outfits];
 
-        // Apply season filter
+        
         if (filters.season !== 'all') {
             result = result.filter(outfit =>
                 outfit.season.includes(filters.season)
             );
         }
 
-        // Apply occasion filter
+        
         if (filters.occasion !== 'all') {
             result = result.filter(outfit =>
                 outfit.category.toLowerCase() === filters.occasion.toLowerCase()
             );
         }
 
-        // Apply gender filter
+        
         if (filters.gender !== 'all') {
             result = result.filter(outfit =>
                 outfit.gender.toLowerCase() === filters.gender.toLowerCase()
             );
         }
 
-        // Apply search query
+        
         if (searchQuery.trim()) {
             const query = searchQuery.toLowerCase();
             result = result.filter(outfit =>
@@ -68,7 +68,7 @@ const OutfitGallery = () => {
             );
         }
 
-        // Apply sorting
+        
         if (sortBy === 'name-asc') {
             result.sort((a, b) => a.name.localeCompare(b.name));
         } else if (sortBy === 'name-desc') {
@@ -93,7 +93,7 @@ const OutfitGallery = () => {
     return (
         <div className="min-h-screen py-24 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto">
-                {/* Header */}
+                {}
                 <div className="text-center mb-12">
                     <h1 className="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400">
                         Outfit Gallery
@@ -103,9 +103,9 @@ const OutfitGallery = () => {
                     </p>
                 </div>
 
-                {/* Filters & Search */}
+                {}
                 <div className="bg-[var(--card-bg)] backdrop-blur-xl border border-[var(--border-color)] rounded-3xl p-6 mb-8 shadow-2xl">
-                    {/* Search Bar */}
+                    {}
                     <div className="mb-6">
                         <div className="relative">
                             <input
@@ -121,9 +121,9 @@ const OutfitGallery = () => {
                         </div>
                     </div>
 
-                    {/* Filter Pills */}
+                    {}
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-                        {/* Season Filter */}
+                        {}
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-[var(--text-secondary)]">Season</label>
                             <select
@@ -139,7 +139,7 @@ const OutfitGallery = () => {
                             </select>
                         </div>
 
-                        {/* Occasion Filter */}
+                        {}
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-[var(--text-secondary)]">Occasion</label>
                             <select
@@ -158,7 +158,7 @@ const OutfitGallery = () => {
                             </select>
                         </div>
 
-                        {/* Gender Filter */}
+                        {}
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-[var(--text-secondary)]">Gender</label>
                             <select
@@ -172,7 +172,7 @@ const OutfitGallery = () => {
                             </select>
                         </div>
 
-                        {/* Sort By */}
+                        {}
                         <div>
                             <label className="block text-xs font-bold uppercase tracking-wider mb-2 text-[var(--text-secondary)]">Sort By</label>
                             <select
@@ -187,7 +187,7 @@ const OutfitGallery = () => {
                         </div>
                     </div>
 
-                    {/* Active Filters & Clear */}
+                    {}
                     {activeFilterCount > 0 && (
                         <div className="mt-6 flex items-center justify-between pt-6 border-t border-white/10">
                             <span className="text-sm opacity-60">
@@ -203,7 +203,7 @@ const OutfitGallery = () => {
                     )}
                 </div>
 
-                {/* Results */}
+                {}
                 {loading ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[...Array(6)].map((_, i) => (
@@ -224,14 +224,14 @@ const OutfitGallery = () => {
                     </div>
                 ) : (
                     <>
-                        {/* Results Count */}
+                        {}
                         <div className="mb-6 text-center">
                             <p className="text-sm opacity-60">
                                 Showing <span className="font-bold text-blue-400">{filteredOutfits.length}</span> of <span className="font-bold">{outfits.length}</span> outfits
                             </p>
                         </div>
 
-                        {/* Outfit Grid */}
+                        {}
                         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                             {filteredOutfits.map((outfit, index) => (
                                 <OutfitCard key={outfit._id} outfit={outfit} delay={index * 100} />

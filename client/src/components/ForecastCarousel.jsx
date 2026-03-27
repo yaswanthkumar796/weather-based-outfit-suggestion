@@ -3,7 +3,7 @@ import React from 'react';
 const ForecastCarousel = ({ forecast, unit, onDayClick }) => {
      if (!forecast || forecast.length === 0) return null;
 
-     // Helper to convert temp if needed
+     
      const getTemp = (celsius) => {
        if (unit === 'F') return Math.round((celsius * 9/5) + 32);
        return Math.round(celsius);
@@ -13,7 +13,7 @@ const ForecastCarousel = ({ forecast, unit, onDayClick }) => {
           <div className="w-full">
                <h3 className="text-lg font-bold mb-4 opacity-80 pl-1">Next Week</h3>
 
-               {/* Horizontal Scroll Container */}
+               {}
                <div className="flex overflow-x-auto gap-3 pb-4 snap-x snap-mandatory scrollbar-hide">
                     {forecast.map((day, index) => (
                          <div

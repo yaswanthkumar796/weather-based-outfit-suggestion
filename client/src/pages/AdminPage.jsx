@@ -20,19 +20,19 @@ const AdminPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Prepare data for backend
+      
       const payload = {
         ...formData,
-        // Convert comma-separated string to array
+        
         items: formData.items.split(',').map(item => item.trim()),
-        // Wrap single values in array to match Schema
+        
         season: [formData.season],
       };
 
       await createOutfit(payload);
       setMessage('✅ Outfit Added Successfully!');
 
-      // Reset form fields
+      
       setFormData({
         ...formData,
         name: '',
@@ -40,7 +40,7 @@ const AdminPage = () => {
         imageUrl: ''
       });
 
-      // Clear message after 3 seconds
+      
       setTimeout(() => setMessage(''), 3000);
 
     } catch (error) {

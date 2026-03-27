@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { createOutfit } from '../api/outfitApi';
-import './AdminPage.css'; // Reusing existing CSS or rename file if preferred
+import './AdminPage.css'; 
 
 const PublicSubmission = () => {
      const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ const PublicSubmission = () => {
      const handleSubmit = async (e) => {
           e.preventDefault();
           try {
-               // Prepare data for backend
+               
                const payload = {
                     ...formData,
                     items: formData.items.split(',').map(item => item.trim()),
@@ -28,9 +28,9 @@ const PublicSubmission = () => {
                };
 
                await createOutfit(payload);
-               setMessage('✅ Outfit Submitted for Approval!'); // Message updated
+               setMessage('✅ Outfit Submitted for Approval!'); 
 
-               // Reset form fields
+               
                setFormData({
                     ...formData,
                     name: '',

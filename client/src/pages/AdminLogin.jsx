@@ -10,7 +10,7 @@ const AdminLogin = ({ onLogin }) => {
           e.preventDefault();
           try {
                const data = await loginAdmin(username, password);
-               // Save to local storage
+               
                localStorage.setItem('adminUser', JSON.stringify(data));
                onLogin(data);
           } catch (err) {
